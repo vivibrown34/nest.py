@@ -1,4 +1,51 @@
-%matplotlib inline
-import nest 
+# this is just copied and pasted from the website
+import matplotlib.pyplot as plt
+import nest
 import numpy as np
 import os
+
+from pynestml.codegeneration.nest_code_generator_utils import NESTCodeGeneratorUtils
+# here is me trying to make a temporary directory like how the website says
+# i used chatgpt to help me with the code here
+import tempfile
+import os
+temp_dir = tempfile.nestml_component()
+
+# this is  me trying to put in the parameters for the izhikevich model, but I don't know what to 
+# do about the fact that the variables are undefined
+izhikevich_param1 = 0.04*v^2 + 5*v + 140 - u + I
+izhikevich_param2 = a(b*v-u)
+
+# task 1 from izhikevich tutorial 
+#state
+v_mV = -65 mV    # Membrane potential in mV
+u_real = 0    # Membrane potential recovery variable
+
+#equations
+v_prime = (.04 * v * v / mV + 5 * v + (140 - u) * mV + (I_e * GOhm)) / ms;
+u_prime = a * (b * v - u * mV) / (mV * ms)
+
+# parameters
+a_real = .02    # describes time scale of recovery variable
+b_real = .2    # sensitivity of recovery variable
+c_mV = -65 mV    # after-spike reset value of v
+d_real = 8.    # after-spike reset value of u
+
+#input:
+spikes <- spike
+I_e_pA <- continuous
+
+#output:
+spike
+
+#update:
+integrate_odes()
+
+ # add synaptic current
+ v += spikes * mV * s
+
+  # threshold crossing
+if v >= 30 mV;
+    v = c
+    u += d
+emit_spike()
