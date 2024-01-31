@@ -1,0 +1,4 @@
+%matplotlib inline
+import nest 
+import numpy as np
+import os
