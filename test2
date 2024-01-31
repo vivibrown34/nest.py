@@ -1,7 +1,19 @@
 # copy and pasting something from the NEST tutorial just to see if it works
 
-nest.set_verbosity("M_WARNING")
-nest.ResetKernel()
+from numpy import nested_iters
+from pyparsing import nested_expr, nestedExpr
+import matplotlib.pyplot as plt
+import nest
+import numpy as np
+import os
+from pynestml.codegeneration.nest_code_generator_utils import NESTCodeGeneratorUtils
+nested_iters.Create("izhikevich_tutorial")
+nested_expr.set_verbosity("M_WARNING")
+nestedExpr.ResetKernel()
+
+# generate and build code
+module_name, neuron_model_name = \
+    NESTCodeGeneratorUtils.generate_code_for("izhikevich_solution.nestml")
 
 neuron = nest.Create(neuron_model_name)
 voltmeter = nest.Create("voltmeter")
